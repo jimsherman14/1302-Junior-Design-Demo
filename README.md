@@ -1,14 +1,14 @@
-# Auth0 React Native Samples - Login
+# Simian - Login
 
-The complete guide to getting started with [react-native-auth0](https://github.com/auth0/react-native-auth0) is our [React Native QuickStart](https://auth0.com/docs/quickstart/native/react-native/00-login).
+Based on the complete guide to getting started with [react-native-auth0](https://github.com/auth0/react-native-auth0)
 
 ## 1. Install
 
 Clone the repository and install the dependencies with npm:
 
 ```bash
-git clone git@github.com:auth0-samples/auth0-react-native-sample.git
-cd auth0-react-native-sample
+git clone git@github.com:jimsherman14/1302-Junior-Design-Demo.git
+cd 1302-Junior-Design-Demo
 npm install
 ```
 

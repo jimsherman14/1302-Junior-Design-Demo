@@ -1,4 +1,4 @@
-package com.auth0samples;
+package com.simian;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "Auth0Samples";
+    return "Simian";
   }
 }
