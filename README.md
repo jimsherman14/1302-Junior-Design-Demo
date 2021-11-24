@@ -4,12 +4,12 @@ The complete guide to getting started with [react-native-auth0](https://github.c
 
 ## 1. Install
 
-Clone the repository and install the dependencies with [Yarn](https://yarnpkg.com):
+Clone the repository and install the dependencies with npm:
 
 ```bash
 git clone git@github.com:auth0-samples/auth0-react-native-sample.git
 cd auth0-react-native-sample
-yarn install
+npm install
 ```
 
 ### iOS Applications only
@@ -71,9 +71,9 @@ com.auth0samples://YOUR_DOMAIN/android/com.auth0samples/callback
 
 Run your app on an emulator, simulator, or your own connected device.
 
-- To run the app on iOS run `yarn run ios`.
-- To run the app on Android run `yarn run android`.
+- To run the app on iOS run `npm run ios`.
+- To run the app on Android run `npm run android`.
 
 The first run may take a while to fully launch. Keep an eye out for confirmation windows and watch the terminal for output and results.
 
-**Note:** If you get an error about "No bundle URL present" try clicking reload in the app or running `yarn run ios` again. 
+**Note:** If you get an error about "No bundle URL present" try clicking reload in the app or running `npm run ios` again. 

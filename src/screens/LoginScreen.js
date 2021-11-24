@@ -11,7 +11,7 @@ import Auth0 from 'react-native-auth0';
 // const auth0 = new Auth0(credentials);
 const auth0 = new Auth0({ domain: 'dev-df4tovlx.us.auth0.com', clientId: 'i1sQjjVOGJXE7z9QKiKocRdfBsMjo6FK' });
 
-const App = () => {
+const LoginScreen = () => {
     const [accessToken, setAccessToken] = React.useState(null);
 
     _onLogin = () => {
@@ -55,4 +55,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default App;
+export default LoginScreen;
