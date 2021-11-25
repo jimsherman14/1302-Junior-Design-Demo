@@ -30,8 +30,13 @@ jobs:
       - name: Install pod dependencies
         run: |
           cd ios && pod install
-      - name: Build app
+      - name: Build iOS Release
         run: |       
-          xcodebuild -workspace Simian.xcworkspace -scheme Simian archive -archivePath Simian.xcarchive -allowProvisioningUpdates
-          xcodebuild -exportArchive -archivePath ./Simian.xcarchive -exportPath . -exportOptionsPlist Simian/Info.plist
-          mv Simian.ipa ../Simian.ipa
+          xcodebuild \
+          -workspace Simian.xcworkspace \
+          -scheme Simian \
+          clean archive \
+          -sdk iphoneos \
+          -UseModernBuildSystem=NO \
+          -archivePath $PWD/Simian \
+          CODE_SIGNING_ALLOWED=NO"

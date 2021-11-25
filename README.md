@@ -2,11 +2,7 @@
 
 # Simian
 
-Simian is a mobile application designed to help those new to stock trading gain a stronger understanding of the what, how, and why to trading
-
-<center>
-    <img src="./assets/login.png" width="200" height="400"/>
-</center>
+Simian is a mobile application designed to help those new to stock trading gain a stronger understanding of the what, how, and why of trading.
 
 ## Install
 
