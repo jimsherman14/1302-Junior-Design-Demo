@@ -1,4 +1,4 @@
-<img src="https://img.shields.io/github/workflow/status/jimsherman14/1302-Junior-Design-Demo/Build%20Android%20and%20iOS">
+<img src="https://img.shields.io/github/workflow/status/jimsherman14/1302-Junior-Design-Demo/Build%20Android%20and%20iOS"> <img src="https://img.shields.io/badge/Team-1302-informational"/>
 
 # Simian
 
@@ -6,7 +6,7 @@ Simian is a mobile application designed to help those new to stock trading gain 
 
 ## Install
 
-Clone the repository and install the dependencies with npm:
+Clone the repository and instfall the dependencies with npm:
 
 ```bash
 git clone git@github.com:jimsherman14/1302-Junior-Design-Demo.git
