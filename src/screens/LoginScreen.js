@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
     Button,
     StyleSheet,
@@ -7,12 +7,14 @@ import {
 } from 'react-native';
 import Auth0 from 'react-native-auth0';
 
+import { AuthContext } from '../screens/context';
+
 // var credentials = require('./auth0-configuration.js');
 // const auth0 = new Auth0(credentials);
 const auth0 = new Auth0({ domain: 'dev-1b2jde8p.us.auth0.com', clientId: 'dX7LyMnHIwZ7FaZ75eZaTvwBe6UXvBGd' });
 
 const LoginScreen = () => {
-    const [accessToken, setAccessToken] = React.useState(null);
+    const [accessToken, setAccessToken] = useContext(AuthContext);
 
     _onLogin = () => {
         auth0.webAuth
@@ -32,7 +34,7 @@ const LoginScreen = () => {
 
     return (
         <View style = { styles.container }>
-            <Text style = { styles.header }> Auth0Sample - Login </Text>
+            <Text style = { styles.header }> Simian - Login </Text>
             <Text>
                 You are{ accessToken ? ' ' : ' not ' }logged in . </Text>
                 <Button onPress = { accessToken ? this._onLogout : this._onLogin }
