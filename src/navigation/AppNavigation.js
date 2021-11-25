@@ -2,35 +2,16 @@ import React, { useState } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import HomeScreen from '../screens/HomeScreen';
 import EducationScreen from '../screens/EducationScreen';
 import SearchScreen from '../screens/SearchScreen';
 import LoginScreen from '../screens/LoginScreen'
-
-import { AuthContext } from '../screens/context';
-
-const HomeStack = createStackNavigator();
-const HomeStackScreen = () => (
-  <HomeStack.Navigator>
-    <HomeStack.Screen name="Home" component={HomeScreen} />
-  </HomeStack.Navigator>
-);
-
-const EducationStack = createStackNavigator();
-const EducationStackScreen = () => (
-  <EducationStack.Navigator>
-    <EducationStack.Screen name="Education" component={EducationScreen} />
-  </EducationStack.Navigator>
-);
-
-const SearchStack = createStackNavigator();
-const SearchStackScreen = () => (
-  <SearchStack.Navigator>
-    <SearchStack.Screen name="Search" component={SearchScreen} />
-  </SearchStack.Navigator>
-);
+import { AuthContext } from '../AuthContext';
 
 const LoginStack = createStackNavigator();
+
 const LoginStackScreen = () => (
   <LoginStack.Navigator screenOptions={{headerShown: false}}>
     <LoginStack.Screen name="Login" component={LoginScreen} />
@@ -38,20 +19,54 @@ const LoginStackScreen = () => (
 );
 
 const Tabs = createBottomTabNavigator();
+
 const TabsScreen = () => (
-  <Tabs.Navigator screenOptions={{headerShown: false}}>
-    <Tabs.Screen name="Home" component={HomeScreen} />
-    <Tabs.Screen name="Search" component={SearchScreen} />
-    <Tabs.Screen name="Education" component={EducationScreen} />
+  <Tabs.Navigator
+    screenOptions={{
+      tabBarActiveTintColor: '#FF9737',
+      tabBarInactiveTintColor: 'grey',
+      tabBarShowLabel: false,
+      headerShown: false
+    }}
+  >
+    <Tabs.Screen
+      name="Home"
+      component={HomeScreen}
+      options={{
+        tabBarIcon: ({ color }) => (
+          <MaterialCommunityIcons name="chart-areaspline" size={24} color={color} />
+        )
+      }}
+    />
+    <Tabs.Screen
+      name="Search"
+      component={SearchScreen}
+      options={{
+        tabBarIcon: ({ color }) => (
+          <MaterialCommunityIcons name="magnify" size={24} color={color} />
+        )
+      }}
+    />
+    <Tabs.Screen
+      name="Education"
+      component={EducationScreen}
+      options={{
+        tabBarIcon: ({ color }) => (
+          <MaterialCommunityIcons name="school-outline" size={24} color={color} />
+        )
+      }}
+    />
   </Tabs.Navigator>
 );
 
 const RootStack = createStackNavigator();
+
 const RootStackScreen = () => {
   const [token, setToken] = useState(null);
+
   return (
     <AuthContext.Provider value={[ token, setToken ]}>
-      <RootStack.Navigator>
+      <RootStack.Navigator screenOptions={{headerShown: false}}>
         {token ? (
           <RootStack.Screen
             name="Simian"
@@ -59,7 +74,7 @@ const RootStackScreen = () => {
           />
         ) : (
           <RootStack.Screen
-            name="Auth"
+            name="Simian"
             component={LoginStackScreen}
           />
         )}

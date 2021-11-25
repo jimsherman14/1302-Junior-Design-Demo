@@ -7,7 +7,7 @@ import {
 import { Button, Title } from 'react-native-paper';
 import Auth0 from 'react-native-auth0';
 
-import { AuthContext } from '../screens/context';
+import { AuthContext } from '../AuthContext';
 
 // var credentials = require('./auth0-configuration.js');
 // const auth0 = new Auth0(credentials);
@@ -39,7 +39,7 @@ const LoginScreen = () => {
     return (
         <View style={styles.container}>
             <View style={styles.logo}>
-                <Image source={require('../../assets/simian_logo.png')}/>
+                <Image source={require('../assets/simian_logo.png')}/>
             </View>
             <Title style={styles.header}>Welcome to Simian</Title>
             <Button style={styles.button} color='white' mode='contained' onPress={accessToken ? logout : login}>

@@ -1,14 +1,27 @@
 import React from 'react'
-import { Text, View } from 'react-native';
+import { 
+    StyleSheet,
+    Text,
+    View
+} from 'react-native';
 
 const EducationScreen = () => {
     return (
-        <View>
+        <View style={styles.container}>
             <Text>
                 This is the education screen
             </Text>
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#FF9737'
+    }
+});
 
 export default EducationScreen;
