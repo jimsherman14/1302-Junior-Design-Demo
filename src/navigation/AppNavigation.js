@@ -1,9 +1,4 @@
 import React, { useState } from 'react';
-import { 
-    Image,
-    Pressable,
-    StyleSheet
- } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -15,36 +10,34 @@ import LoginScreen from '../screens/LoginScreen'
 import { AuthContext } from '../screens/context';
 
 const HomeStack = createStackNavigator();
-const EducationStack = createStackNavigator();
-const SearchStack = createStackNavigator();
-const Tabs = createBottomTabNavigator();
-const RootStack = createStackNavigator();
-const LoginStack = createStackNavigator();
-
 const HomeStackScreen = () => (
   <HomeStack.Navigator>
     <HomeStack.Screen name="Home" component={HomeScreen} />
   </HomeStack.Navigator>
 );
 
+const EducationStack = createStackNavigator();
 const EducationStackScreen = () => (
   <EducationStack.Navigator>
     <EducationStack.Screen name="Education" component={EducationScreen} />
   </EducationStack.Navigator>
 );
 
+const SearchStack = createStackNavigator();
 const SearchStackScreen = () => (
   <SearchStack.Navigator>
     <SearchStack.Screen name="Search" component={SearchScreen} />
   </SearchStack.Navigator>
 );
 
+const LoginStack = createStackNavigator();
 const LoginStackScreen = () => (
   <LoginStack.Navigator screenOptions={{headerShown: false}}>
     <LoginStack.Screen name="Login" component={LoginScreen} />
   </LoginStack.Navigator>
 );
 
+const Tabs = createBottomTabNavigator();
 const TabsScreen = () => (
   <Tabs.Navigator screenOptions={{headerShown: false}}>
     <Tabs.Screen name="Home" component={HomeScreen} />
@@ -53,6 +46,7 @@ const TabsScreen = () => (
   </Tabs.Navigator>
 );
 
+const RootStack = createStackNavigator();
 const RootStackScreen = () => {
   const [token, setToken] = useState(null);
   return (
