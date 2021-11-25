@@ -12,28 +12,21 @@ jobs:
       needs: install-and-test
       runs-on: ubuntu-latest
       steps: 
-        - uses: actions/checkout@v2
-        - name: Install npm dependencies
-          run: |
-            npm install
         - name: Build Android
           run: |
-            cd android && ./gradlew build
+            cd android && ./gradlew assembleDebug
   build-ios:
     needs: install-and-test
     runs-on: macos-latest
     steps: 
       - uses: actions/checkout@v2
-      - name: Install npm dependencies
-        run: |
-          npm install
       - name: Install pod dependencies
         run: |
           cd ios && pod install
       - name: Build iOS
         run: |       
           xcodebuild \
-          -workspace Simian.xcworkspace \
+          -workspace ios/Simian.xcworkspace \
           -scheme Simian \
           clean archive \
           -sdk iphoneos \
