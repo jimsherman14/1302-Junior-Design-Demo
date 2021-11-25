@@ -35,8 +35,4 @@ jobs:
           xcodebuild \
           -workspace ios/Simian.xcworkspace \
           -scheme Simian \
-          clean archive \
-          -sdk iphoneos \
-          -UseModernBuildSystem=NO \
-          -archivePath $PWD/Simian \
           CODE_SIGNING_ALLOWED=NO

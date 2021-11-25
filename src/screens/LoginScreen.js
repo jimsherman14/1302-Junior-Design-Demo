@@ -1,50 +1,37 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import {
+    ActivityIndicator,
     Image,
     StyleSheet,
     View
 } from 'react-native';
 import { Button, Title } from 'react-native-paper';
-import Auth0 from 'react-native-auth0';
-
-import { AuthContext } from '../AuthContext';
-
-// var credentials = require('./auth0-configuration.js');
-// const auth0 = new Auth0(credentials);
-const auth0 = new Auth0({ domain: 'dev-1b2jde8p.us.auth0.com', clientId: 'dX7LyMnHIwZ7FaZ75eZaTvwBe6UXvBGd' });
+import { useAuth } from '../contexts/Auth';
 
 const LoginScreen = () => {
-    const [accessToken, setAccessToken] = useContext(AuthContext);
+    const [loading, setLoading] = useState(false);
+    const auth = useAuth();
 
-    const login = () => {
-        auth0.webAuth
-            .authorize({
-                scope: 'openid profile email'
-            })
-            .then(credentials => setAccessToken(credentials.accessToken))
-            .catch(error => console.log(error));
+    const login = async () => {
+        setLoading(true);
+        await auth.login();
     };
-
-    const logout = () => {
-        auth0.webAuth
-            .clearSession({})
-            .then(() => setAccessToken(null))
-            .catch(error => console.log(error));
-    };
-
-    if (accessToken) {
-        console.log('Successfully logged in!')
-    }
 
     return (
         <View style={styles.container}>
-            <View style={styles.logo}>
-                <Image source={require('../assets/simian_logo.png')}/>
-            </View>
-            <Title style={styles.header}>Welcome to Simian</Title>
-            <Button style={styles.button} color='white' mode='contained' onPress={accessToken ? logout : login}>
-                Join now
-            </Button>
+            {loading ? (
+                <ActivityIndicator color={'#000'} animating={true} size="small" />
+            ) : (
+                <> 
+                    <View style={styles.logo}>
+                        <Image source={require('../../assets/simian_logo.png')}/>
+                    </View>
+                    <Title style={styles.header}>Welcome to Simian</Title>
+                    <Button style={styles.button} color='white' mode='contained' onPress={login}>
+                        Join now
+                    </Button>
+                </>
+            )}
         </View >
     );
 }
