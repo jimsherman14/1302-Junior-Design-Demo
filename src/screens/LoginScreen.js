@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     Button,
+    Image,
     StyleSheet,
     Text,
     View
@@ -32,11 +33,12 @@ const LoginScreen = () => {
 
     return (
         <View style = { styles.container }>
-            <Text style = { styles.header }> Auth0Sample - Login </Text>
+            <Text style = { styles.header }> Welcome to Simian </Text>
+            <Image source={require('./images/simian_logo.png')}/>
             <Text>
-                You are{ accessToken ? ' ' : ' not ' }logged in . </Text>
+                You are{ accessToken ? ' ' : ' not ' }logged in</Text>
                 <Button onPress = { accessToken ? this._onLogout : this._onLogin }
-                title = { accessToken ? 'Log Out' : 'Log In' }/>
+                title = { accessToken ? 'Log Out' : 'Log In \n \n Register' }/>
         </View >
     );
 }
@@ -46,12 +48,13 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF'
+        backgroundColor: '#2BEBF5'
     },
     header: {
-        fontSize: 20,
+        fontSize: 30,
         textAlign: 'center',
-        margin: 10
+        margin: 10,
+        fontWeight: 'bold'
     }
 });
 
