@@ -1,10 +1,12 @@
-# Simian - Login
+<img src="https://img.shields.io/github/workflow/status/jimsherman14/1302-Junior-Design-Demo/Build%20Android%20and%20iOS"> <img src="https://img.shields.io/badge/Team-1302-informational"/>
 
-Based on the complete guide to getting started with [react-native-auth0](https://github.com/auth0/react-native-auth0)
+# Simian
 
-## 1. Install
+Simian is a mobile application designed to help those new to stock trading gain a stronger understanding of the what, how, and why of trading.
 
-Clone the repository and install the dependencies with npm:
+## Install
+
+Clone the repository and instfall the dependencies with npm:
 
 ```bash
 git clone git@github.com:jimsherman14/1302-Junior-Design-Demo.git
@@ -21,7 +23,7 @@ pod install
 
 You should see the `A0Auth0` pod being installed and linked to the sample app.
 
-## 2. Run The App
+## Run The App
 
 Run your app on an emulator, simulator, or your own connected device.
 

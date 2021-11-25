@@ -1,0 +1,42 @@
+name: Build Android and iOS
+on: [push, pull_request]
+jobs:
+  install-and-test:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+      - name: Install npm dependencies
+        run: |
+          npm install
+  build-android:
+      needs: install-and-test
+      runs-on: ubuntu-latest
+      steps: 
+        - uses: actions/checkout@v2
+        - name: Install npm dependencies
+          run: |
+            npm install
+        - name: Build Android
+          run: |
+            cd android && ./gradlew build
+  build-ios:
+    needs: install-and-test
+    runs-on: macos-latest
+    steps: 
+      - uses: actions/checkout@v2
+      - name: Install npm dependencies
+        run: |
+          npm install
+      - name: Install pod dependencies
+        run: |
+          cd ios && pod install
+      - name: Build iOS
+        run: |       
+          xcodebuild \
+          -workspace Simian.xcworkspace \
+          -scheme Simian \
+          clean archive \
+          -sdk iphoneos \
+          -UseModernBuildSystem=NO \
+          -archivePath $PWD/Simian \
+          CODE_SIGNING_ALLOWED=NO
