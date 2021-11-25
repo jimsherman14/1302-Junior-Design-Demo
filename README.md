@@ -1,6 +1,6 @@
-<img src="https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/>
+<img src="https://img.shields.io/github/workflow/status/jimsherman14/1302-Junior-Design-Demo/Build%20Android%20and%20iOS">
 
-# Simian <img src="./assets/simian_logo.png" width="30" height="30" alt="Simian Logo" />
+# Simian
 
 Simian is a mobile application designed to help those new to stock trading gain a stronger understanding of the what, how, and why to trading
 
