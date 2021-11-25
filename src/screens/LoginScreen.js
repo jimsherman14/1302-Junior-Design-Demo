@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
     Image,
     StyleSheet,
@@ -7,12 +7,14 @@ import {
 import { Button, Title } from 'react-native-paper';
 import Auth0 from 'react-native-auth0';
 
+import { AuthContext } from '../screens/context';
+
 // var credentials = require('./auth0-configuration.js');
 // const auth0 = new Auth0(credentials);
 const auth0 = new Auth0({ domain: 'dev-1b2jde8p.us.auth0.com', clientId: 'dX7LyMnHIwZ7FaZ75eZaTvwBe6UXvBGd' });
 
 const LoginScreen = () => {
-    const [accessToken, setAccessToken] = React.useState(null);
+    const [accessToken, setAccessToken] = useContext(AuthContext);
 
     const login = () => {
         auth0.webAuth

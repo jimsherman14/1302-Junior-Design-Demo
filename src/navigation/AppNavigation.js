@@ -1,88 +1,77 @@
-import React from 'react';
-import { 
-    Image,
-    Pressable,
-    StyleSheet
- } from 'react-native';
+import React, { useState } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from '../screens/HomeScreen';
+import EducationScreen from '../screens/EducationScreen';
+import SearchScreen from '../screens/SearchScreen';
+import LoginScreen from '../screens/LoginScreen'
 
-const Stack = createStackNavigator();
+import { AuthContext } from '../screens/context';
 
-const HomeStack = () => (
-  <Stack.Navigator
-    initialRouteName="Home"
-    screenOptions={{
-      headerTintColor: 'red',
-      headerTitleStyle: styles.headerTitleStyle,
-      headerMode: 'float',
-    }}>
-    <Stack.Screen
-      name="Home"
-      component={HomeScreen}
-      options={({navigation}) => ({
-        headerLeft: () => (
-          <Pressable onPress={() => navigation.openDrawer()}>
-            <Image style={styles.iconStyle} source={AppIcon.images.menu} />
-          </Pressable>
-        ),
-        headerLeftContainerStyle: {paddingLeft: 10},
-      })}
-    />
-  </Stack.Navigator>
+const HomeStack = createStackNavigator();
+const HomeStackScreen = () => (
+  <HomeStack.Navigator>
+    <HomeStack.Screen name="Home" component={HomeScreen} />
+  </HomeStack.Navigator>
 );
 
-const BottomTab = createBottomTabNavigator();
+const EducationStack = createStackNavigator();
+const EducationStackScreen = () => (
+  <EducationStack.Navigator>
+    <EducationStack.Screen name="Education" component={EducationScreen} />
+  </EducationStack.Navigator>
+);
 
-const TabNavigator = () => (
-  <BottomTab.Navigator
-    initialRouteName="Home"
-    screenOptions={{
-      tabBarInactiveTintColor: 'grey',
-      tabBarActiveTintColor: AppStyles.color.tint,
-      tabBarIcon: ({focused}) => {
-        return (
-          <Image
-            style={{
-              tintColor: focused ? AppStyles.color.tint : AppStyles.color.grey,
-            }}
-            source={AppIcon.images.home}
+const SearchStack = createStackNavigator();
+const SearchStackScreen = () => (
+  <SearchStack.Navigator>
+    <SearchStack.Screen name="Search" component={SearchScreen} />
+  </SearchStack.Navigator>
+);
+
+const LoginStack = createStackNavigator();
+const LoginStackScreen = () => (
+  <LoginStack.Navigator screenOptions={{headerShown: false}}>
+    <LoginStack.Screen name="Login" component={LoginScreen} />
+  </LoginStack.Navigator>
+);
+
+const Tabs = createBottomTabNavigator();
+const TabsScreen = () => (
+  <Tabs.Navigator screenOptions={{headerShown: false}}>
+    <Tabs.Screen name="Home" component={HomeScreen} />
+    <Tabs.Screen name="Search" component={SearchScreen} />
+    <Tabs.Screen name="Education" component={EducationScreen} />
+  </Tabs.Navigator>
+);
+
+const RootStack = createStackNavigator();
+const RootStackScreen = () => {
+  const [token, setToken] = useState(null);
+  return (
+    <AuthContext.Provider value={[ token, setToken ]}>
+      <RootStack.Navigator>
+        {token ? (
+          <RootStack.Screen
+            name="Simian"
+            component={TabsScreen}
           />
-        );
-      },
-      headerShown: false,
-    }}>
-    <BottomTab.Screen
-      options={{tabBarLabel: 'Home'}}
-      name="HomeStack"
-      component={HomeStack}
-    />
-  </BottomTab.Navigator>
-);
-
-const RootNavigator = () => (
-  <Stack.Navigator
-    initialRouteName="HomeStack"
-    screenOptions={{headerShown: false}}>
-  </Stack.Navigator>
-);
+        ) : (
+          <RootStack.Screen
+            name="Auth"
+            component={LoginStackScreen}
+          />
+        )}
+      </RootStack.Navigator>
+    </AuthContext.Provider>
+  );
+}
 
 const AppNavigator = () => (
   <NavigationContainer>
-    <RootNavigator />
+    <RootStackScreen />
   </NavigationContainer>
 );
-
-const styles = StyleSheet.create({
-  headerTitleStyle: {
-    fontWeight: 'bold',
-    textAlign: 'center',
-    alignSelf: 'center',
-    color: 'black',
-  },
-  iconStyle: { tintColor: AppStyles.color.tint, width: 30, height: 30 },
-});
 
 export default AppNavigator;
