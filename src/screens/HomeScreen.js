@@ -1,14 +1,18 @@
 import React from 'react'
-import { 
-    StyleSheet,
-    Text,
-    View
-} from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Button } from 'react-native-paper';
+import { useAuth } from '../contexts/Auth';
 
 const HomeScreen = () => {
+    const auth = useAuth();
+
+    const logout = async () => {
+        await auth.logout();
+    };
+
     return (
         <View style={styles.container}>
-            <Text>This is the homescreen</Text>
+            <Button mode='contained' onPress={logout} >Logout</Button>
         </View>
     );
 };

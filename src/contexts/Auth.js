@@ -33,7 +33,6 @@ const AuthProvider = ({ children }) => {
       const credentials = await auth0.webAuth.authorize({
         scope: 'openid profile email'
       });
-      console.log(credentials);
       setAuthData(credentials.accessToken);
       await AsyncStorage.setItem('accessToken', credentials.accessToken);
 
