@@ -61,5 +61,4 @@ buck-out/
 /ios/Pods/
 /ios/Podfile.lock
 
-# Auth0 configuration file
-app/auth0-configuration.js
+.env

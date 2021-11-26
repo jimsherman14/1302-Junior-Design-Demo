@@ -1,11 +1,10 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Auth0 from 'react-native-auth0';
+import credentials from '../../auth0-config';
 
 const AuthContext = createContext(null);
-// var credentials = require('./auth0-configuration.js');
-// const auth0 = new Auth0(credentials);
-const auth0 = new Auth0({ domain: 'dev-1b2jde8p.us.auth0.com', clientId: 'dX7LyMnHIwZ7FaZ75eZaTvwBe6UXvBGd' });
+const auth0 = new Auth0(credentials);
 
 const AuthProvider = ({ children }) => {
   const [authData, setAuthData] = useState(null);
@@ -42,9 +41,14 @@ const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-      await auth0.webAuth.clearSession({});
+    try {
+      await auth0.webAuth.clearSession();
       setAuthData(null);
       await AsyncStorage.removeItem('accessToken');
+
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
