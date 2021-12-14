@@ -1,13 +1,23 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { 
+  createContext, 
+  useState, 
+  useContext, 
+  useEffect 
+} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Auth0 from 'react-native-auth0';
+import { Context } from '../utils/types';
 import credentials from '../../auth0-config';
 
-const AuthContext = createContext(null);
+interface Props {
+  children: React.ReactNode;
+};
+
+const AuthContext = createContext<Context | null>(null);
 const auth0 = new Auth0(credentials);
 
-const AuthProvider = ({ children }) => {
-  const [authData, setAuthData] = useState(null);
+const AuthProvider: React.FC<Props> = ({ children }) => {
+  const [authData, setAuthData] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -66,6 +76,6 @@ function useAuth() {
   }
 
   return context;
-}
+};
 
-export { AuthContext, AuthProvider, useAuth};
+export { AuthContext, AuthProvider, useAuth };
