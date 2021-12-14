@@ -1,20 +1,15 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { Text } from 'react-native';
-import { useAuth } from '../contexts/Auth';
-import AuthStack from './AuthStack';
-import AppStack from './AppStack';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { useAuth } from "contexts";
+import AuthStack from "./AuthStack";
+import AppStack from "./AppStack";
 
 const AppNavigator = () => {
-  const { authData, loading } = useAuth();
-
-  if (loading) {
-    return <Text>Loading...</Text>;
-  }
+  const auth = useAuth();
 
   return (
     <NavigationContainer>
-      {authData ? <AppStack /> : <AuthStack />}
+      {auth.authData ? <AppStack /> : <AuthStack />}
     </NavigationContainer>
   );
 };

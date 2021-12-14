@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react"
 import { 
     StyleSheet,
     Text,
     View
-} from 'react-native';
+} from "react-native";
 
 const EducationScreen = () => {
     return (
@@ -18,9 +18,9 @@ const EducationScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#FF9737'
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#FF9737"
     }
 });
 

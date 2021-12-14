@@ -1,17 +1,19 @@
-import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import HomeScreen from '../screens/HomeScreen';
-import EducationScreen from '../screens/EducationScreen';
-import SearchScreen from '../screens/SearchScreen';
+import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { 
+  EducationScreen,
+  HomeScreen,
+  SearchScreen
+} from "screens";
 
 const Stack = createBottomTabNavigator();
 
 const AppStack = () => (
   <Stack.Navigator
     screenOptions={{
-      tabBarActiveTintColor: '#FF9737',
-      tabBarInactiveTintColor: 'grey',
+      tabBarActiveTintColor: "#FF9737",
+      tabBarInactiveTintColor: "grey",
       tabBarShowLabel: false,
       headerShown: false
     }}
