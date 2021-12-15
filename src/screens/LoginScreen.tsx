@@ -9,11 +9,11 @@ import { Button, Title } from "react-native-paper";
 import { useAuth } from "../contexts";
 
 const LoginScreen = () => {
-    const auth = useAuth();
+    const { login, loading } = useAuth();
 
     return (
         <View style={styles.container}>
-            {auth.loading ? (
+            {loading ? (
                 <ActivityIndicator color={"#000"} animating={true} size="small" />
             ) : (
                 <> 
@@ -21,7 +21,7 @@ const LoginScreen = () => {
                         <Image source={require("../../assets/AppIcons/Assets.xcassets/AppIcon.appiconset/64.png")}/>
                     </View>
                     <Title style={styles.header}>See what's happening in the market right now.</Title>
-                    <Button style={styles.button} color="white" mode="contained" onPress={auth.login}>
+                    <Button style={styles.button} color="white" mode="contained" onPress={login}>
                         Get started
                     </Button>
                 </>

@@ -5,11 +5,11 @@ import AuthStack from "./AuthStack";
 import AppStack from "./AppStack";
 
 const AppNavigator = () => {
-  const auth = useAuth();
+  const { authData } = useAuth();
 
   return (
     <NavigationContainer>
-      {auth.authData ? <AppStack /> : <AuthStack />}
+      {authData ? <AppStack /> : <AuthStack />}
     </NavigationContainer>
   );
 };

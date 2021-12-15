@@ -1,35 +1,55 @@
 name: Build Android and iOS
-on: [push, pull_request]
+on: [workflow_dispatch, push, pull_request]
 jobs:
-  install-and-test:
+  npm-install:
     runs-on: ubuntu-latest
     steps: 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2 
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        id: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
       - name: Install npm dependencies
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: |
           npm install
+
   build-android:
-      needs: install-and-test
+      needs: npm-install
       runs-on: ubuntu-latest
       steps: 
         - uses: actions/checkout@v2
-        - name: Install npm dependencies
-          run: |
-            npm install
         - name: Build Android
           run: |
             cd android && ./gradlew assembleDebug
+
   build-ios:
-    needs: install-and-test
+    needs: npm-install
     runs-on: macos-latest
     steps: 
       - uses: actions/checkout@v2
-      - name: Install npm dependencies
-        run: |
-          npm install
+
+      - uses: actions/cache@v2
+      - name: Cache pod dependencies
+        id: cache-pods
+        with:
+          path: Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods
+
       - name: Install pod dependencies
+        if: steps.cache-pods.outputs.cache-hit != 'true'
         run: |
           cd ios && pod install
+
       - name: Build iOS
         run: |       
           xcodebuild \
