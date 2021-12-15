@@ -1,28 +1,7 @@
 name: Build Android and iOS
 on: [workflow_dispatch, push, pull_request]
 jobs:
-  npm-install:
-    runs-on: ubuntu-latest
-    steps: 
-      - uses: actions/checkout@v2 
-
-      - name: Cache node modules
-        uses: actions/cache@v2
-        id: cache-node-modules
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-
-      - name: Install npm dependencies
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: |
-          npm install
-
   build-android:
-      needs: npm-install
       runs-on: ubuntu-latest
       steps: 
         - uses: actions/checkout@v2
@@ -31,7 +10,6 @@ jobs:
             cd android && ./gradlew assembleDebug
 
   build-ios:
-    needs: npm-install
     runs-on: macos-latest
     steps: 
       - uses: actions/checkout@v2
