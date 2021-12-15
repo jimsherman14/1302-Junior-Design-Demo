@@ -6,19 +6,8 @@ jobs:
       steps: 
         - name: Checkout repo
           uses: actions/checkout@v2
-          
-        - name: Cache node modules
-          uses: actions/cache@v2
-          id: cache-node-modules
-          with:
-            path: ~/.npm
-            key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
-            restore-keys: | 
-              ${{ runner.os }}-build-
-              ${{ runner.os }}-
               
         - name: Install npm dependencies
-          if: steps.cache-node-modules.outputs.cache-hit != 'true'
           run: |
             npm install
 
@@ -31,19 +20,8 @@ jobs:
     steps: 
       - name: Checkout repo 
         uses: actions/checkout@v2
-
-      - name: Cache node modules
-        uses: actions/cache@v2
-        id: cache-node-modules
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: | 
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
             
       - name: Install npm dependencies
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: |
           npm install
 
